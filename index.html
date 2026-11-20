@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WCCAS Copy of Grades</title>
+<link rel="icon" type="image/jpeg" href="wccas.jpg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login" class="login">
+  <div class="slides" aria-hidden="true">
+    <div class="slide-track">
+      <div class="slide" style="background-image:url(slide1.jpg)"></div>
+      <div class="slide" style="background-image:url(slide2.jpg)"></div>
+      <div class="slide" style="background-image:url(slide3.jpg)"></div>
+      <div class="slide" style="background-image:url(slide4.jpg)"></div>
+      <div class="slide" style="background-image:url(slide5.jpg)"></div>
+      <div class="slide" style="background-image:url(slide1.jpg)"></div>
+    </div>
+  </div>
+  <form id="loginForm" class="login-box" autocomplete="off">
+    <img src="wccas.jpg" alt="WCCAS seal" class="login-seal">
+    <h1>West Central College of Arts and Science Inc.</h1>
+    <p class="login-sub">Copy of Grades &mdash; Log in</p>
+    <label for="user">Username</label>
+    <input id="user" type="text" required autofocus>
+    <label for="pass">Password</label>
+    <input id="pass" type="password" required>
+    <p id="loginOk" class="ok" role="status"></p>
+    <p id="loginErr" class="err" role="alert"></p>
+    <button type="submit" class="btn primary block">Log in</button>
+    <div class="role-row">
+      <span>No account yet? Sign up as:</span>
+      <button type="button" class="btn" id="btnFaculty">Faculty</button>
+      <button type="button" class="btn" id="btnStudent">Student</button>
+    </div>
+  </form>
+
+  <form id="signupForm" class="login-box hidden" autocomplete="off">
+    <img src="wccas.jpg" alt="WCCAS seal" class="login-seal">
+    <h1 id="suTitle">Sign up</h1>
+    <p id="suNote" class="login-sub"></p>
+    <label for="suUser">Username</label>
+    <input id="suUser" type="text" required>
+    <label for="suPass">Password (at least 6 characters)</label>
+    <input id="suPass" type="password" required>
+    <p id="suErr" class="err" role="alert"></p>
+    <button type="submit" class="btn primary block">Sign up</button>
+    <button type="button" class="btn block" id="suBack">Back to log in</button>
+  </form>
+</div>
+
+<!-- APP -->
+<div id="app" class="hidden">
+  <header class="top">
+    <img src="wccas.jpg" alt="WCCAS seal" class="seal">
+    <div class="title">
+      <h1>WCCAS Copy of Grades</h1>
+      <p class="school">West Central College of Arts and Science Inc. &middot; Lubao, Pampanga</p>
+      <p id="clock" class="clock" aria-live="off"></p>
+    </div>
+    <div class="top-actions">
+      <span id="who" class="who"></span>
+      <label class="switch reg-only" for="facToggle" title="Turn Faculty sign-up on or off for the home page">
+        <input type="checkbox" id="facToggle" role="switch">
+        <span class="track" aria-hidden="true"></span>
+        <span id="facToggleText" class="sw-text">Faculty sign-up: ON</span>
+      </label>
+      <button id="btnAccounts" class="btn ghost small reg-only" type="button">Accounts</button>
+      <button id="btnAccess" class="btn ghost small admin-only" type="button">Backup to Access</button>
+      <button id="btnBackup" class="btn ghost small admin-only" type="button">Backup data</button>
+      <button id="btnRestore" class="btn ghost small admin-only" type="button">Restore data</button>
+      <input id="restoreFile" type="file" accept=".json" class="hidden">
+      <button id="btnLogout" class="btn ghost small" type="button">Log out</button>
+    </div>
+  </header>
+
+  <div class="marquee" role="marquee" aria-label="WCCAS Copy of Grades System - Records Section">
+    <div class="marquee-track" aria-hidden="true">
+      <div class="marquee-group"><span>WCCAS Copy of Grades System - Records Section</span><span>WCCAS Copy of Grades System - Records Section</span><span>WCCAS Copy of Grades System - Records Section</span><span>WCCAS Copy of Grades System - Records Section</span></div>
+      <div class="marquee-group"><span>WCCAS Copy of Grades System - Records Section</span><span>WCCAS Copy of Grades System - Records Section</span><span>WCCAS Copy of Grades System - Records Section</span><span>WCCAS Copy of Grades System - Records Section</span></div>
+    </div>
+  </div>
+
+  <main>
+    <!-- REGISTRAR NAME -->
+    <section class="panel enr-only">
+      <h2>School Registrar&rsquo;s Name</h2>
+      <div class="fields">
+        <div class="field" id="rnCollegeWrap">
+          <label for="rnCollege" id="rnCollegeLabel">School Registrar&rsquo;s Name</label>
+          <input id="rnCollege" type="text" placeholder="Full name of the Registrar" autocomplete="off">
+        </div>
+        <div class="field" id="rnJshsWrap">
+          <label for="rnJshs" id="rnJshsLabel">School Registrar&rsquo;s Name</label>
+          <input id="rnJshs" type="text" placeholder="Full name of the Registrar" autocomplete="off">
+        </div>
+      </div>
+      <div class="gen-row" style="border:0;margin-top:.6rem;padding-top:0;align-items:center">
+        <button id="btnSaveRegName" class="btn primary" type="button">Save name</button>
+        <span id="rnMsg" class="ok" role="status"></span>
+      </div>
+      <p class="note">This name is printed under &ldquo;Registrar&rdquo; on generated enrollment forms, copies of grades and transcripts of records.</p>
+    </section>
+
+    <!-- FINANCE OFFICER NAME -->
+    <section class="panel fin-only">
+      <h2>Finance Officer&rsquo;s Name</h2>
+      <div class="fields">
+        <div class="field">
+          <label for="finName">Finance Officer&rsquo;s Name</label>
+          <input id="finName" type="text" placeholder="Full name of the Finance Officer" autocomplete="off">
+        </div>
+      </div>
+      <div class="gen-row" style="border:0;margin-top:.6rem;padding-top:0;align-items:center">
+        <button id="btnSaveFinName" class="btn primary" type="button">Save name</button>
+        <span id="fnMsg" class="ok" role="status"></span>
+      </div>
+      <p class="note">This name is printed on generated enrollment forms and on Finance reports.</p>
+    </section>
+
+    <!-- ENROLLMENT -->
+    <section class="panel enr-only">
+      <h2>Enrollment</h2>
+      <div class="panel-head">
+        <div class="enroll-menu" id="enrollMenu">
+          <button type="button" class="btn primary" id="btnEnroll" aria-haspopup="true">ENROLL &#9662;</button>
+          <div class="enroll-drop" role="menu">
+            <button type="button" role="menuitem" class="btn" data-div="jhs">Junior High School</button>
+            <button type="button" role="menuitem" class="btn" data-div="shs">Senior High School</button>
+            <button type="button" role="menuitem" class="btn" data-div="college">College</button>
+          </div>
+        </div>
+        <input id="enrSearch" class="enr-search" type="search" placeholder="Search enrollment records: name, LRN / Student No., school year" aria-label="Search enrollment records">
+        <select id="enrDiv" class="enr-div" aria-label="Division"></select>
+      </div>
+      <div id="enrList" class="tbl-wrap"></div>
+    </section>
+
+    <!-- BARCODE -->
+    <section class="panel staff-only scan-panel college-area">
+      <h2>Scan student ID</h2>
+      <div class="scan-row">
+        <label for="barcode" class="sr">Barcode</label>
+        <input id="barcode" type="text" placeholder="Barcode box: click here, then scan the student ID" autocomplete="off">
+        <button id="btnScan" class="btn primary" type="button">Scan</button>
+      </div>
+      <div id="scanResult" class="scan-result" aria-live="polite"></div>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="panel college-area">
+      <div class="panel-head">
+        <button id="btnSearch" class="btn primary" type="button">Search Grade</button>
+        <button id="btnAddStudent" class="btn reg-only" type="button">Add Student</button>
+      </div>
+      <div class="fields">
+        <div class="field staff-only">
+          <label for="sn">Student No./LRN</label>
+          <input id="sn" type="text" placeholder="e.g. 2024-0001">
+        </div>
+        <div class="field staff-only">
+          <label for="crs">Course</label>
+          <input id="crs" type="text" list="crsList" placeholder="All courses" autocomplete="off">
+          <datalist id="crsList"></datalist>
+        </div>
+        <div class="field">
+          <label for="sy">School Year</label>
+          <select id="sy"></select>
+        </div>
+        <div class="field">
+          <label for="sem">Semester</label>
+          <select id="sem"></select>
+        </div>
+        <div class="field">
+          <label for="lvl">Grade Level</label>
+          <select id="lvl"></select>
+        </div>
+      </div>
+      <div class="gen-row reg-only">
+        <button id="btnGenStudent" class="btn" type="button">Generate Grades Per Student</button>
+        <button id="btnGenSubject" class="btn" type="button">Generate Grades Per Subject</button>
+        <button id="btnTOR" class="btn" type="button">Generate Transcript of Records</button>
+      </div>
+      <div class="gen-row fac-only">
+        <button id="btnFacSubject" class="btn primary" type="button">Input Grades Per Subject</button>
+        <button id="btnFacSem" class="btn primary" type="button">Input Grades Per Semester</button>
+      </div>
+      <div class="gen-row fin-only">
+        <button id="btnFinReport" class="btn primary" type="button">Generate Reports (Fully Paid / Outstanding Balance)</button>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="results" class="results college-area" aria-live="polite">
+      <p class="empty-state">Search by student number, or leave the boxes blank to list every record.</p>
+    </section>
+  </main>
+
+  <footer class="foot">West Central College of Arts and Science Inc. &middot; Office of the Registrar &middot; Est. 2014</footer>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div id="modalBox" class="modal-box">
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <button id="modalClose" class="x" type="button" aria-label="Close">&times;</button>
+    </div>
+    <div id="modalBody" class="modal-body"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
